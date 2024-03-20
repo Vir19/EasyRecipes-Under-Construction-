@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
+const dotenv = require('dotenv').config();
 
 // create and config server
 const server = express();
@@ -8,25 +9,21 @@ server.use(cors());
 server.use(express.json());
 
 // init express aplication
-const serverPort = 4000;
-server.listen(serverPort, () => {
-  console.log(`Server listening at http://localhost:${serverPort}`);
+const port = 4000;
+server.listen(port, () => {
+  console.log(`Server listening at http://localhost:${port}`);
 });
 
 // CONECTAR BASE DE DATOS
 
 // Función asíncrona que conecta la bdd
 async function getConnection() {
-// Variable que guarda el await
+
   const connection = await mysql.createConnection({
-    // El host de tu base de datos
-    host: 'localhost',
-    // El nombre de tu base de datos.
-    database: 'netflix',
-    // Usuario
-    user: 'root',
-    // Contraseña de la base de datos. 
-    password: 'VirGiNiA5619?',
+    host: process.env.MYSQL_HOST,
+    database: process.env.MYSQL_DB,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASS,
   });
   await connection.connect();
 
@@ -37,10 +34,10 @@ async function getConnection() {
   return connection;
 }
 
-// ENDPOINT listado de películas
-server.get('/movies', async (req, res) => {
-  console.log('Pidiendo a la base de datos información de las películas.');
-  let sql = 'SELECT * FROM movies';
+// ENDPOINT listado de recetas
+server.get('api/recetas', async (req, res) => {
+  console.log('pidiendo recetas');
+  let sql = 'SELECT * FROM recetas';
 
   const connection = await getConnection();
   const [results, fields] = await connection.query(sql);
@@ -57,7 +54,8 @@ server.get('/users', async (req, res) => {
   res.json(results);
   connection.end();
 });
-// EndPoint Listado de películas
+
+// EndPoint Listado de actores
 server.get('/actors', async (req, res) => {
   console.log('Pidiendo a la base de datos información de las películas.');
   let sql = 'SELECT * FROM actors';
@@ -67,3 +65,10 @@ server.get('/actors', async (req, res) => {
   res.json(results);
   connection.end();
 });
+
+// INSERT PARA TODAS LAS RECETAS
+
+const addNewRecipe = `
+INSERT INTO recetas_db.recetas (nombre, ingredientes, instrucciones)
+  VALUES (?, ?, ?);
+`;
