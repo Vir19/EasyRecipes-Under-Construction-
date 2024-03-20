@@ -1,0 +1,19 @@
+{
+  "name": "evaluacion final modulo 4",
+  "version": "1.0.0",
+  "description": "ejercicio de evaluacion modulo 4 de Adalab. Backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "deploy": "rm -rf docs ; npm run build && mv dist docs && git add docs && git commit -m 'Update github Pages.' && git push"
+  },
+  "author": "Vir19",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.3",
+    "mysql2": "^3.9.2"
+  }
+}
