@@ -1,7 +1,7 @@
-const express = require('express');
-const cors = require('cors');
-const mysql = require('mysql2/promise');
-const dotenv = require('dotenv').config();
+const express = require("express");
+const cors = require("cors");
+const mysql = require("mysql2/promise");
+const dotenv = require("dotenv").config();
 
 // create and config server
 const server = express();
@@ -18,11 +18,10 @@ server.listen(port, () => {
 
 // Función asíncrona que conecta la bdd
 async function getConnection() {
-
   const connection = await mysql.createConnection({
     host: process.env.MYSQL_HOST,
     database: process.env.MYSQL_DB,
-    user: process.env.MYSQL_USER ,
+    user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASS,
   });
   await connection.connect();
@@ -35,30 +34,69 @@ async function getConnection() {
 }
 
 // ENDPOINT listado de recetas
-server.get('/api/recetas', async (req, res) => {
-  console.log('pidiendo recetas');
-  let sql = 'SELECT * FROM recetas';
+server.get("/api/recetas", async (req, res) => {
+  console.log("pidiendo recetas");
+  let sql = "SELECT * FROM recetas";
 
   const connection = await getConnection();
   const [results] = await connection.query(sql);
 
   // Variable que almacena el número de elementos dentro del array:
   const numOfElements = results.length;
-
-  //Variable que almacena el Objeto de respuesta: 
- const response = {
-  info: {count: numOfElements},
-  results: results
- };
+  //Variable que almacena el Objeto de respuesta:
+  const response = {
+    info: { count: numOfElements },
+    results: results,
+  };
   // Se aplica la anterior variable en la respuesta del json
   res.json(response);
   // Cerramos conexión
   connection.end();
 });
 
+// Obtener receta por ID
+
+server.get("/api/recetas/:id", async (req, res) => {
+  // Almacenamos el id en una variable
+  const recipeId = req.params.id;
+  sql = ` SELECT * FROM recetas WHERE id = ?`;
+
+  const connection = await getConnection();
+  const [results] = await connection.query(sql, [recipeId]);
+
+  if (results.length === 0) {
+    res.json({
+      success: false,
+      error: "No se ha encontrado la receta solicitada",
+    });
+  } else {
+    res.json(results[0]);
+  }
+
+  console.log(`pidiendo receta por el id ${req.params.id}`);
+  connection.end();
+});
 
 // INSERT PARA TODAS LAS RECETAS
-const addNewRecipe = `
+
+server.post("/api/recetas", async (req, res) => {
+  const { nombre, ingredientes, instrucciones } = req.body;
+  const newRecipe = [nombre, ingredientes, instrucciones];
+  const addNewRecipe = `
 INSERT INTO recetas (nombre, ingredientes, instrucciones)
   VALUES (?, ?, ?);
 `;
+  const connection = await getConnection();
+
+  try {
+    const [results] = await connection.execute(addNewRecipe, newRecipe);
+    res.json({
+      success: true,
+      message: "¡Bien, se ha añadido tu receta!",
+    });
+  } catch (error) {
+    console.error("Algo ha salido mal. Inténtalo de nuevo", error);
+  }
+
+  connection.end();
+});
