@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql2/promise");
-const dotenv = require("dotenv").config();
+require("dotenv").config();
 
 // create and config server
 const server = express();
@@ -90,12 +90,19 @@ INSERT INTO recetas (nombre, ingredientes, instrucciones)
 
   try {
     const [results] = await connection.execute(addNewRecipe, newRecipe);
+    const newId = results.insertId;
+
     res.json({
       success: true,
+      id: newId,
       message: "¡Bien, se ha añadido tu receta!",
     });
   } catch (error) {
-    console.error("Algo ha salido mal. Inténtalo de nuevo", error);
+    console.error("Error al añadir rec.", error);
+    res.status(500).json({
+      success: false,
+      error: "Error. Todos los campos deben estar rellenos",
+    });
   }
 
   connection.end();
