@@ -107,3 +107,101 @@ INSERT INTO recetas (nombre, ingredientes, instrucciones)
 
   connection.end();
 });
+
+// PUT PARA EDITAR RECETAS
+server.put("/api/recetas/:id", async (req, res) => {
+  // Se almacenan los datos a editar en una variable
+  const { nombre, ingredientes, instrucciones } = req.body;
+  // Se almacena el ID seleccionado para poder usarlo más adelante
+  const { id } = req.params;
+  // Comprobamos que no nos pasen datos vacíos a la tabla
+  if (!nombre || !ingredientes || !instrucciones) {
+    return res.status(400).json({
+      success: false,
+      error: "No se pueden dejar los campos vacíos.",
+    });
+  }
+  // Añadimos el id al cuerpo de la receta a editar
+  const bodyRecipe = [nombre, ingredientes, instrucciones, id];
+  // Query SQL para editar receta
+  const editRecipe = `
+  UPDATE recetas
+  SET nombre = ?,
+  ingredientes = ?,
+  instrucciones = ?
+  WHERE (id = ?);
+`;
+  const connection = await getConnection();
+  const count = `
+  SELECT COUNT(*) as count
+   FROM recetas
+    WHERE id = ?;`;
+
+  try {
+    // Executamos la comprobación del id de la receta (si existe o no).
+    const [testResults] = await connection.execute(count, [id]);
+    // Mensaje de error en caso de que la receta no exista:
+    if (testResults[0].count === 0) {
+      return res.status(404).json({
+        sucess: false,
+        error: "La receta no existe",
+      });
+    }
+    // Almacenamos los resultados del UPDATE en la variable results.
+    const [results] = await connection.execute(editRecipe, bodyRecipe);
+
+    res.json({
+      success: true,
+      message: "¡Bien, se ha editado la receta!",
+    });
+  } catch (error) {
+    console.error("Error al editar receta", error);
+    res.status(500).json({
+      success: false,
+      error: "No se ha podido editar la receta, inténtalo de nuevo.",
+    });
+  }
+
+  connection.end();
+});
+
+// Endpoint para ELIMINAR receta.
+
+server.delete("/api/recetas/:id", async (req, res) => {
+  const { id } = req.params;
+  const deleteRecipe = `
+  DELETE FROM recetas
+   WHERE (id = ?);
+`;
+  const connection = await getConnection();
+  const count = `
+  SELECT COUNT(*) as count
+   FROM recetas
+    WHERE id = ?;`;
+
+  try {
+    const [testResults] = await connection.execute(count, [id]);
+
+    if (testResults[0].count === 0) {
+      return res.status(404).json({
+        sucess: false,
+        error: "La receta seleccionada no existe",
+      });
+    }
+
+    const [results] = await connection.execute(deleteRecipe, [id]);
+
+    res.json({
+      success: true,
+      message: "La receta se ha eliminado correctamente.",
+    });
+  } catch (error) {
+    console.error("Error al eliminar rec.", error);
+    res.status(500).json({
+      success: false,
+      error: "Error en la base de datos",
+    });
+  }
+
+  connection.end();
+});
