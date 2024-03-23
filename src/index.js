@@ -9,7 +9,7 @@ server.use(cors());
 server.use(express.json());
 
 // init express aplication
-const port = 4000;
+const port = process.env.PORT || 4000;
 server.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
