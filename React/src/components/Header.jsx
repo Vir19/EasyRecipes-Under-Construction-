@@ -6,6 +6,7 @@ function Header() {
   return (
     <header className="header">
       <img src={logo} className="logo_er" alt="LogoEasyRecipes" />
+      <h1 className="slogan">... because life is already hard enough</h1>
       <nav className="navBar">
         <NavLink className="linkNav" to="#">
           Home
