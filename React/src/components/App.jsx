@@ -1,11 +1,14 @@
-import '../scss/App.scss'
+import "../scss/App.scss";
+import Header from "./Header";
 
 function App() {
   return (
     <div>
-      Escribe aquí tu código
+      <Header />
+      <main className="name"></main>
+      <footer className="footer"></footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

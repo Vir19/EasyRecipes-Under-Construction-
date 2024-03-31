@@ -1,1 +1,26 @@
 @import 'core/reset';
+
+.header{
+  display: flex;
+  height: 20.5rem;
+  background-color: #BC5300;
+  justify-content: space-between;
+  border: solid 2px black;
+  .logo_er{
+    width: 20rem;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+  }
+  .navBar {
+    display: flex;
+    gap: 1rem;
+    padding-top: 0.5rem;
+    padding-right: 1.5rem;
+    .linkNav {
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #FFFEEA;
+    }
+  }
+}

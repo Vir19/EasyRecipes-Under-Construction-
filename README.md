@@ -17,9 +17,13 @@ EasyRecipes es una aplicación web desarrollada con Node.js y Express, que utili
 # Cómo empezar
 
 **Instalación**: Clona el repositorio de EasyRecipes desde GitHub y configura tu entorno de desarrollo.
+
 **Configuración de la base de datos**: Configura tu base de datos MySQL y asegúrate de proporcionar las credenciales necesarias a través de un archivo .env.
+
 **Ejecución del servidor**: Inicia el servidor Node.js utilizando el comando npm start y asegúrate de que esté escuchando en el puerto especificado en tu archivo de configuración.
+
 **Explora y disfruta**: Abre tu navegador web favorito y visita la URL del servidor para comenzar a explorar EasyRecipes y disfrutar de todas sus funcionalidades.
+
 **Contribuciones**
 ¡Nos encanta recibir contribuciones de la comunidad! Si tienes ideas para mejorar EasyRecipes, no dudes en abrir una solicitud de extracción en nuestro repositorio de GitHub. Estamos comprometidos a hacer de EasyRecipes la mejor aplicación posible para todos nuestros usuarios.
 
