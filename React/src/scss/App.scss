@@ -1,32 +1,96 @@
 @import 'core/reset';
+@import 'core/media';
 
-.header{
-  display: flex;
-  height: 20.5rem;
+/// Mobile 320px ///
+
+.header {
   background-color: #BC5300;
-  justify-content: space-between;
-  border: solid 2px black;
+  height: 18rem;
   .logo_er{
-    width: 20rem;
-    margin-left: 1rem;
-    margin-top: 0.5rem;
+    height: 18rem;
+    width: 15rem;
+    margin-left: 7rem;
   }
-  .navBar {
-    display: flex;
-    gap: 1rem;
-    padding-top: 0.5rem;
-    padding-right: 1.5rem;
-    .linkNav {
-      text-decoration: none;
-      font-size: 1.5rem;
-      font-weight: 500;
+  .hiddenSlogan {
+    display: none;
+  }
+  .headerSquare {
+    background-color: rgb(54, 53, 53);
+    height: 5rem;
+    width: 5rem;
+    border: #FFFEEA solid 1px;
+    border-radius: 3px;
+  }
+  .navigationDiv {
+    .iconburger {
       color: #FFFEEA;
+      font-size: 3.5rem;
+      margin: 0.7rem 0rem 0rem 0.7rem;
+    }
+    display: flex;
+    flex-direction: column;
+    width: 5rem;
+    padding-bottom: rem;
+    .navBar {
+      padding-top: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(54, 53, 53);
+      width: 6rem;
+      gap: 0.5rem;
+      height: 8rem;
+      .linkNav {
+        font-size: 1.2rem;
+        text-decoration: none;
+        color: #FFFEEA;
+
+      }
     }
   }
-  .slogan{
-    margin-top: 7rem;
-    font-size: 6rem;
-    color: #FFFEEA;
-    font-family: "Dancing Script", cursive;
+  }
+
+
+
+
+
+
+/// Laptop 1440px ///
+
+@media (min-width: 1440px){
+  .header{
+    display: flex;
+    height: 20.5rem;
+    background-color: #BC5300;
+    justify-content: space-between;
+    border: solid 2px black;
+    .hs-hidden {
+      display: none;
+    }
+    .logo_er{
+      width: 20rem;
+      margin-left: 1rem;
+      margin-top: 0.5rem;
+    }
+    .slogan {
+      margin-top: 7rem;
+      font-size: 6rem;
+      color: #FFFEEA;
+      font-family: "Dancing Script", cursive;
+      display: inline;
+    }
+    .navBar {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      padding-top: 1rem;
+      padding-right: 1.5rem;
+      background-color: none;
+      .linkNav {
+        text-decoration: none;
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #FFFEEA;
+      }
+    }
   }
 }
