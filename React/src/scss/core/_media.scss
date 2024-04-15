@@ -1,0 +1,71 @@
+// MEDIA QUERIES HEADER 
+
+// MOBILE 375px
+
+@media (min-width: 375px) {
+  .header {
+    .logo_er {
+      margin: 0.7rem 0rem 0rem 10rem;
+    }
+  }
+}
+
+// MOBILE 425px 
+
+@media (min-width: 425px) {
+  .header {
+    .logo_er {
+      margin-left: 13rem;
+    }
+  }
+}
+
+// TABLET 
+
+@media (min-width: 600px) {
+  .header {
+    height: 21rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: radial-gradient(circle, #BC5300,  #f27f27b7, );
+    .logo_er {
+      margin-left: 0.1rem;
+    }
+    .slogan {
+      font-size: 2.2rem;
+      color: #FFFEEA;
+      display: inline;
+      margin-bottom: 1rem;
+      font-family: "Dancing Script", cursive;
+    }
+    .naviationDiv {
+      display: none;
+      .headerSquare {
+        display: none;
+        .iconburger {
+          display: none;
+        }
+      }
+      .navBar {
+        display: flex;
+        flex-direction: row;
+        .navLink {
+          display: inline;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+/// Laptop 1440px ///
+
+@media (min-width: 1440px){
+.header {
+  margin: auto;
+}
+}
