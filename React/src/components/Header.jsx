@@ -12,7 +12,7 @@ function Header() {
         <div className="headerSquare hs-hidden">
           <i className="fa-solid fa-burger iconburger"></i>
         </div>
-        <nav className="navBar navHid">
+        <nav className="navBar">
           <NavLink className="linkNav" to="#">
             Home
           </NavLink>

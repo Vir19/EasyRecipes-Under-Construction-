@@ -39,8 +39,7 @@
       margin-bottom: 1rem;
       font-family: "Dancing Script", cursive;
     }
-    .naviationDiv {
-      display: none;
+    .navigationDiv {
       .headerSquare {
         display: none;
         .iconburger {
@@ -48,10 +47,17 @@
         }
       }
       .navBar {
+        position: absolute;
+        top: 0;
         display: flex;
         flex-direction: row;
-        .navLink {
-          display: inline;
+        background: none;
+        border: none;
+        gap: 2rem;
+        .linkNav {
+          font-size: 1.3rem;
+          color: black;
+          font-weight: 500;
         }
       }
     }
