@@ -53,11 +53,28 @@
         flex-direction: row;
         background: none;
         border: none;
-        gap: 2rem;
+        gap: 1rem;
+        width: 25rem;
         .linkNav {
           font-size: 1.3rem;
           color: black;
           font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .header {
+    .navigationDiv {
+      .navBar {
+        margin-left: 0.5rem;
+        width: 30rem;
+        gap: 0.5rem;
+        .linkNav {
+         display: flex;
+         width: 5rem;
         }
       }
     }
