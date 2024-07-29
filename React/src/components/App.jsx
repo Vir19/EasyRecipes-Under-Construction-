@@ -1,12 +1,14 @@
 import "../scss/App.scss";
 import Header from "./Header";
+import Main from "./Main";
+import Footer from "./Footer";
 
 function App() {
   return (
     <div>
       <Header />
-      <main className="name"></main>
-      <footer className="footer"></footer>
+      <Main />
+      <Footer />
     </div>
   );
 }

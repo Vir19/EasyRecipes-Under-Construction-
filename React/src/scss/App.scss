@@ -1,8 +1,10 @@
 @import 'core/reset';
 
+
 .header {
   background-color: #BC5300;
   height: 18rem;
+  width: 100vw;
   .logo_er{
     height: 18rem;
     width: 15rem;
@@ -52,5 +54,6 @@
     }
    }
   }
+
 
   @import 'core/media';
