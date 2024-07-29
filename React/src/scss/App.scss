@@ -55,5 +55,21 @@
    }
   }
 
+  // Main
+
+  .main {
+    width: 100vw;
+    .flexMain {
+      display: flex;
+      gap: 4rem;
+      margin-top: 2rem;
+      margin-left: 1rem;
+      .foodPic {
+        height: 15rem;
+        width: 15rem;
+      }
+    }
+  }
+
 
   @import 'core/media';
