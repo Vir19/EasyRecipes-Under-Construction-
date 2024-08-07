@@ -10,18 +10,18 @@ function Main() {
           alt="Pollo al Curry"
         />
         {/* la lista ingredientes seguramente será un comp */}
-        <section className="ingredientList">
-          <ul>
-            <li>Pechuga de pollo</li>
-            <li>Cebolleta</li>
-            <li>Dientes de ajo</li>
-            <li>Jengibre fresco</li>
-            <li>Guindilla pequeña</li>
+        <section className="ingredientListSection">
+          <ul className="ingredientList">
+            <li className="ingredient">Pechuga de pollo</li>
+            <li className="ingredient">Cebolleta</li>
+            <li className="ingredient">Jengibre fresco</li>
+            <li className="ingredient">Dientes de ajo</li>
+            <li className="ingredient">Guindilla pequeña</li>
           </ul>
         </section>
       </div>
-      <section className="preparation">
-        <p>
+      <section className="preparationSection">
+        <p className="preparation">
           Lo primero es tener preparados todos los ingredientes. Cortar el pollo
           en piezas de un bocado. Picar la cebolleta y muy fino el diente de
           ajo, el jengibre y la guindilla sin las semillas, si la usamos. Si
